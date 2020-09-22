@@ -5,7 +5,6 @@ This script is based closelt on the reference mentioned above.
 Goals:
     (1) Add support for 24, 32 bit WAV integer files [See soundfile, wavio module]
     (2) Pad input data
-    (3) Calculate best possible lsb
 """
 from os import stat
 from math import ceil
