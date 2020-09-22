@@ -186,21 +186,3 @@ def get_data(infile, outfile, lsb, nbytes):
 
     with open(outfile, 'wb') as out_file:
         out_file.write(bytes(data))
-
-def confirm_working():
-    print("TESTING...")
-    stego("huge_test.wav", "temporary.wav", "test.webm", 4)
-    print("Hide Complete")
-    get_data("temporary.wav", "tested.webm", 4, 73173252)
-    print("Recover Complete.")
-    print("Done.")
-    print("Auto Checking...")
-    with open('tested.webm', 'rb') as file_1:
-        with open('test.webm', 'rb') as file_2:
-            if file_1.read() == file_2.read():
-                print("Checked...OK")
-            else:
-                print("Corrupted File!!!")
-
-if __name__ == '__main__':
-    confirm_working()
