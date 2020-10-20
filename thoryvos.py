@@ -518,9 +518,11 @@ class MainWindow(QMainWindow):
             self.ui.DragDropLabelTransfer.setStyleSheet(
                     DragDropLabelTransferSS2)
             if type(location) == int:
+                self.reset()
                 self.ui.DragDropLabelTransfer.setText(
                     f"{Error[location]}")
             else:
+                self.reset()
                 self.ui.DragDropLabelTransfer.setText(f"File Saved to: \n{location}")
 
         else:
@@ -528,9 +530,11 @@ class MainWindow(QMainWindow):
 
             filename = thoryvos.anon_upload(Infile)
             if type(filename) == int:
+                self.reset()s
                 self.ui.DragDropLabelTransfer.setText(
                     f"{Error[filename]}")
             else:
+                self.reset()
                 self.ui.DragDropLabelTransfer.setText(
                     f"Succesfully Uploaded")
                 self.ui.Url.setText(filename)
@@ -631,6 +635,7 @@ class MainWindow(QMainWindow):
                                   self.ui.AlgoSelect.currentText())
         if code in ERRORCODES:
             self.ui.CryptoDragDropLabel.setText(Error[code])
+        self.reset()
         self.ui.CryptoDragDropLabel.setText("Succesfully Decrypted")
 
     def encrypt(self):
@@ -638,17 +643,18 @@ class MainWindow(QMainWindow):
         global Infile, Outfile
         self.ui.CryptoDragDropLabel.setText("Encrypting...")
 
-        if not Infile.endswith('.wav'):
-            Infile += '.wav'
+        if not Outfile.endswith('.wav'):
+            Outfile += '.wav'
 
         code = thoryvos.encryptor(Infile, Outfile, self.ui.Password.text(),
                                   self.ui.AlgoSelect.currentText())
         if code in ERRORCODES:
             self.ui.CryptoDragDropLabel.setText(Error[code])
 
+        tmp = Outfile
         self.reset()
         self.ui.CryptoDragDropLabel.setText("Succesfully Encrypted")
-        self.ui.CryptoSaveLocBrowseL.setText(f"File Saved as \n{Infile}")
+        self.ui.CryptoSaveLocBrowseL.setText(f"File Saved as \n{tmp}")
 
     def update_password(self):
         """Toggle the button according to password field."""
