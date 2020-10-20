@@ -530,7 +530,7 @@ class MainWindow(QMainWindow):
 
             filename = thoryvos.anon_upload(Infile)
             if type(filename) == int:
-                self.reset()s
+                self.reset()
                 self.ui.DragDropLabelTransfer.setText(
                     f"{Error[filename]}")
             else:
