@@ -1,0 +1,8 @@
+PySide2
+pycryptodome
+hashlib
+argparse
+termcolor
+PyWave
+SoundFile
+anonfile
