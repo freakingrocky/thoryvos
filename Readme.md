@@ -3,6 +3,11 @@ The all in one audio cryptographic toolkit.
 
 You can use thor𝜓vos as a module, from the command line or through a GUI.
 
+Install the fonts by executing the following command:\
+`python install_fonts.py` \
+This script is Windows only. For other OS, you need to install the included fonts manually.
+
+
 > Currently Available Features:  \
 &nbsp;&nbsp;&nbsp;Encryption & Decryption  [Pycryptodomex used]\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES256, DES3, Salsa20  \
