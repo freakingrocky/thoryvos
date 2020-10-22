@@ -12,7 +12,7 @@ This script is Windows only. For other OS, you need to install the included font
 
 
 > Currently Available Features:  \
-&nbsp;&nbsp;&nbsp;Encryption & Decryption  [Pycryptodomex used]\
+&nbsp;&nbsp;&nbsp;Encryption & Decryption  [Pycryptodome used]\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES256, DES3, Salsa20  \
 &nbsp;&nbsp;&nbsp;Stegography using LSB\
 &nbsp;&nbsp;&nbsp;Anonymous File Sharing\
