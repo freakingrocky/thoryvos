@@ -3,10 +3,11 @@ The all in one audio cryptographic toolkit.
 
 You can use thor𝜓vos as a module, from the command line or through a GUI.
 
-Install the fonts by executing the following command:\
+Install the fonts by executing the following command (optional but better load times):\
 `python install_fonts.py` \
 **This must be run as *admin*.**\
-This script is Windows only. For other OS, you need to install the included fonts manually. If you get different fonts or missing text. Try installing the fonts manually by moving everything in the fonts directory to `C:\Windows\Fonts`\
+This script is Windows only. For other OS, you need to install the included fonts manually. If you get different fonts or missing text.\
+\
 **Install all the *requirements* before running the program**.\
 `pip install -r requirements.txt`
 

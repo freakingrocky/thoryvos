@@ -27,11 +27,11 @@ def encryptor(infile: str, outfile: str, password: str, mode: str) -> int:
     if not outfile.endswith('.wav'):
         return 4
 
-    if mode == 'AES':
+    if mode.upper() == 'AES':
         encrypted_data = enc.AES(password)
-    elif mode == 'DES':
+    elif mode.upper() == 'DES':
         encrypted_data = enc.DES(password)
-    elif mode == 'SALSA20':
+    elif mode.upper() == 'SALSA20':
         encrypted_data = enc.Salsa20(password)
     else:
         return 2
@@ -50,11 +50,11 @@ def decryptor(infile: str, outfile: str, password: str, mode: str) -> int:
 
     dec = crypto.Decrypt(infile)
 
-    if mode == 'AES':
+    if mode.upper() == 'AES':
         decrypted_data = dec.AES(password)
-    elif mode == 'DES':
+    elif mode.upper() == 'DES':
         decrypted_data = dec.DES(password)
-    elif mode == 'SALSA20':
+    elif mode.upper() == 'SALSA20':
         decrypted_data = dec.Salsa20(password)
     else:
         return 2

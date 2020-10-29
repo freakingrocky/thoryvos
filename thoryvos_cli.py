@@ -24,7 +24,7 @@ def credits():
     print()
 
 
-def main():
+def parse_cl():
     """CLI Argument Parser."""
     parser = argparse.ArgumentParser(description='thoryvos Command Line\
                                      Interface. Macros are available on GUI.')
@@ -170,4 +170,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parse_cl()

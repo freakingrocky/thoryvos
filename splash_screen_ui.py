@@ -9,6 +9,8 @@
 
 
 from PySide2 import QtCore, QtGui, QtWidgets
+import fonts
+import os
 
 
 class Ui_SplashScreen(object):
@@ -24,6 +26,9 @@ class Ui_SplashScreen(object):
         self.verticalLayout.setSpacing(3)
         self.verticalLayout.setObjectName("verticalLayout")
         self.DropShadowFrame = QtWidgets.QFrame(self.centralwidget)
+        self.fontDB = QtGui.QFontDatabase()
+        for font in os.listdir("fonts"):
+                self.fontDB.addApplicationFont(f":/fonts/fonts/{font}")
         font = QtGui.QFont()
         font.setFamily("MS PGothic")
         font.setPointSize(15)

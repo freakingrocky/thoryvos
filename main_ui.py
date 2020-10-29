@@ -10,10 +10,15 @@
 
 from PySide2 import QtCore, QtGui, QtWidgets
 from GUI_helper import DragDropWidget
+import fonts
+import os
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.fontDB = QtGui.QFontDatabase()
+        for font in os.listdir("fonts"):
+            self.fontDB.addApplicationFont(f":/fonts/fonts/{font}")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1080, 400)
         MainWindow.setMinimumSize(QtCore.QSize(1080, 400))

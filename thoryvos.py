@@ -6,6 +6,7 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 import os
+import fonts
 from time import sleep
 
 # GUI
@@ -38,6 +39,10 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.AppDesc.setText("Welcome...")
+
+        self.fontDB = QFontDatabase()
+        for font in os.listdir("fonts"):
+            self.fontDB.addApplicationFont(f":/fonts/fonts/{font}")
 
         self.lsb = None
         self.nb = None

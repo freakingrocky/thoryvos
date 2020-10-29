@@ -1,6 +1,8 @@
 from thoryvos import *
 
+
 class UIFunctions(MainWindow):
+    """Animation."""
     def toggleMenu(self, maxWidth, enable):
         if not enable:
             return
