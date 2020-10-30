@@ -22,7 +22,7 @@ This script is Windows only. For other OS, you need to install the included font
 
 To use the GUI, simply execute the following command:\
 &nbsp;&nbsp;&nbsp;```python thoryvos.py```
-![](https://i.imgur.com/BynAEz0.png)
+[![Demo Video](https://i.imgur.com/BynAEz0.png)](https://www.youtube.com/watch?v=uIFjztawVHM&feature=youtu.be)
 
 To use the Command Line Interface, simply execute the following
 &nbsp;&nbsp;&nbsp;```python thoryvos_cli.py [options]```
