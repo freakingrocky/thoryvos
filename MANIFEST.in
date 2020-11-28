@@ -1,0 +1,2 @@
+include thoryvos/fonts/*.ttf
+include README.md LICENSE
