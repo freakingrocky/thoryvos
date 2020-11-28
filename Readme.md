@@ -1,14 +1,11 @@
 # ***thor𝜓vos***
-The all in one audio cryptographic toolkit.
+The all in one cryptographic toolkit.
 
 You can use thor𝜓vos as a module, from the command line or through a GUI.
 
-Install the fonts by executing the following command:\
-`python install_fonts.py` \
-**This must be run as *admin*.**\
-This script is Windows only. For other OS, you need to install the included fonts manually. If you get different fonts or missing text. Try installing the fonts manually by moving everything in the fonts directory to `C:\Windows\Fonts`\
-**Install all the *requirements* before running the program**.\
-`pip install -r requirements.txt`
+\
+**Simply use pip to install by calling the following command**.\
+`pip install thoryvos`
 
 
 > Currently Available Features:  \
@@ -20,11 +17,11 @@ This script is Windows only. For other OS, you need to install the included font
 &nbsp;&nbsp;&nbsp;Macros (GUI Only)
 
 To use the GUI, simply execute the following command:\
-&nbsp;&nbsp;&nbsp;```python thoryvos.py```
-![](https://i.imgur.com/BynAEz0.png)
+&nbsp;&nbsp;&nbsp;```python -m thoryvos```
+[![Demo Video](https://i.imgur.com/BynAEz0.png)](https://www.youtube.com/watch?v=uIFjztawVHM&feature=youtu.be)
 
 To use the Command Line Interface, simply execute the following
-&nbsp;&nbsp;&nbsp;```python thoryvos_cli.py [options]```
+&nbsp;&nbsp;&nbsp;```python -m thoryvos [options]```
 
 ![](https://i.imgur.com/8TsifwV.png)
 
@@ -44,19 +41,17 @@ raise Exception(Error[code])
 ### Start by importing the main module and the errors.
 ```
 import thoryvos_driver as thoryvos
-from thoryvos_errorcodes import Error
 ```
 
 ### For encryption/decryption:
 ```
-code = thoryvos.encryptor(infile, outfile, password, mode)
-code = thoryvos.decryptor(infile, outfile, password, mode)
+thoryvos.encryptor(infile, outfile, password, mode)
+thoryvos.decryptor(infile, outfile, password, mode)
 ```
 infile -> Path to the input file (file to be encrypted)\
 outfile -> Path to the output file \
 password -> Must be a string\
-mode -> Algorithm to be used. Must be one of these: "AES/DES/Salsa20". These are AES256, DES3 specifically.\
-The return value is the exit code for the encryptor. It is of type int.
+mode -> Algorithm to be used. Must be one of these: "AES/DES/Salsa20". These are AES256, DES3 specifically.
 
 ### For file transfer:
 ```
@@ -64,18 +59,18 @@ location = thoryvos.anon_download(url)
 url = thoryvos.anon_upload(file)
 ```
 The input must be strings.\
-On succesful upload, returns the location of the file downloaded. Otherwise, error code of type int\
-On succesful download, returns the url of the uploaded file. Otherwise, error code of type int
+On succesful upload, returns the location of the file downloaded.\
+On succesful download, returns the url of the uploaded file.
 
 ### For steganography:
 ```
 steg = thoryvos.hide_data(infile, outfile, datafile, lsb=None)
-steg = thoryvos.recover_data(infile, outfile, lsb=None, nbytes=None)
+thoryvos.recover_data(infile, outfile, lsb=None, nbytes=None)
 ```
 infile -> Path to the input file (file to be hidden in)\
 datafile -> Path to the data file (data file to be hidden)\
 outfile -> Path to the output file (name of the output file)\
-On succesful hiding, returns a tuple containing lsb & nbytes values respectively. `(lsb, nbytes)`. Otherwise, error code of type int.
+On succesful hiding, returns a tuple containing lsb & nbytes values respectively. `(lsb, nbytes)`.
 
 ### Made by Rakshan Sharma
 ### Instagram: freakingrocky

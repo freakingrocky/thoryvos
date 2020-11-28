@@ -5,4 +5,3 @@ termcolor
 PyWave
 SoundFile
 anonfile
-fonttools
