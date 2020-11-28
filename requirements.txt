@@ -1,7 +1,0 @@
-PySide2
-pycryptodome
-argparse
-termcolor
-PyWave
-SoundFile
-anonfile
