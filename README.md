@@ -4,7 +4,7 @@ The all in one cryptographic toolkit.
 You can use thor𝜓vos as a module, from the command line or through a GUI.
 
 \
-**Simply use pip to install by calling the following command**.\
+**Simply use [pip](https://pypi.org/project/thoryvos/) to install by calling the following command**.\
 `pip install thoryvos`
 
 
