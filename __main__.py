@@ -1,6 +1,7 @@
 from UI_Functions import *
 from thoryvos import *
 from thoryvos_cli import parse_cl
+import sys
 
 
 def main():

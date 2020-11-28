@@ -3,10 +3,7 @@ from termcolor import cprint
 from os import get_terminal_size
 import thoryvos_driver as thoryvos
 import argparse
-from thoryvos_errorcodes import *
-
-
-ERRORCODES = range(1, 9)
+from thoryvos_errors import *
 
 
 def credits():
@@ -15,11 +12,11 @@ def credits():
 
     cprint('thor\N{MATHEMATICAL ITALIC SMALL PSI}vos'.center(
         size.columns, " "), 'red', attrs=['bold'])
-    cprint("The all-in-one audio based cryptography toolkit".center(size.columns,
+    cprint("The all-in-one cryptography toolkit".center(size.columns,
                                                                    " "), 'red', attrs=['dark'])
     cprint("="*(size.columns-4), attrs=['dark'])
     cprint("Made by Rakshan Sharma, V1.0", 'blue')
-    cprint("Use 'help' command to get commands.")
+    cprint("Use '-h' flag to get help.")
     cprint("="*(size.columns-4), attrs=['dark'])
     print()
 
@@ -74,16 +71,14 @@ def parse_cl():
         if not args.password:
             exit("Password is required.")
         if not args.algorithm:
-            exit("Algorithm must be specified.")
+            raise InvalidEncryptionMode
         if not args.infile:
-            exit("Input file is required.")
+            raise FileDoesNotExist
         if not args.outfile:
             exit("Output file is required.")
 
-        code = thoryvos.encryptor(args.infile, args.outfile, args.password,
-                                  args.algorithm.upper())
-        if code in ERRORCODES:
-            exit(Error[code])
+        thoryvos.encryptor(args.infile, args.outfile, args.password,
+                           args.algorithm.upper())
 
         exit("Successfully Ecrypted.")
 
@@ -91,36 +86,29 @@ def parse_cl():
         if not args.password:
             exit("Password is required.")
         if not args.algorithm:
-            exit("Algorithm must be specified.")
+            raise InvalidEncryptionMode
         if not args.infile:
-            exit("Input file is required.")
+            raise FileDoesNotExist
         if not args.outfile:
             exit("Output file is required.")
 
-        code = thoryvos.decryptor(args.infile, args.outfile, args.password,
-                                  args.algorithm.upper())
-        if code in ERRORCODES:
-            exit(Error[code])
+        thoryvos.decryptor(args.infile, args.outfile, args.password,
+                           args.algorithm.upper())
 
         exit("Successfully Decrypted.")
 
     if args.mode == 'hide':
         if not args.datafile:
-            exit("Datafile is required.")
+            raise EmptyDataFile
         if not args.lsb:
             args.lsb = None
         if not args.infile:
-            exit("Input file is required.")
+            raise FileDoesNotExist
         if not args.outfile:
             exit("Output file is required.")
 
-        code = thoryvos.hide_data(args.infile,
-                                  args.outfile,
-                                  args.datafile,
-                                  args.lsb)
-
-        if type(code) == int:
-            exit(Error[code])
+        thoryvos.hide_data(args.infile, args.outfile,
+                           args.datafile, args.lsb)
 
         cprint(
     f"""YOU MUST REMEMBER THESE VALUES FOR DATA EXTRACTION:
@@ -131,42 +119,34 @@ def parse_cl():
 
     if args.mode == 'recover':
         if not args.lsb:
-            exit(Error[7])
+            raise LSBError
         if not args.nbytes:
-            exit(Error[8])
+            raise NBytesError
         if not args.infile:
-            exit("Input file is required.")
+            raise FileDoesNotExist
         if not args.outfile:
             exit("Output file is required.")
 
-        code = thoryvos.recover_data(args.infile, args.outfile, args.lsb,
-                                     args.nbytes)
-        if code in ERRORCODES:
-            exit(Error[code])
+        thoryvos.recover_data(args.infile, args.outfile, args.lsb,
+                              args.nbytes)
 
         exit(0)
 
     if args.mode == 'upload':
         if not args.infile:
-            exit("Input file is required.")
+            raise FileDoesNotExist
 
-        code = thoryvos.anon_upload(args.infile)
+        URL = thoryvos.anon_upload(args.infile)
 
-        if type(code) == int:
-            exit(Error[code])
-
-        exit(f"URL: {code}")
+        exit(f"URL: {URL}")
 
     if args.mode == 'download':
         if not args.url:
-            exit("URL is required.")
+            raise URLError
 
-        code = thoryvos.anon_download(args.url)
+        filename = thoryvos.anon_download(args.url)
 
-        if type(code) == int:
-            exit(Error[code])
-
-        exit(f"Saved to {code}")
+        exit(f"Saved to {filename}")
 
 
 if __name__ == '__main__':

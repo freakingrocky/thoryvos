@@ -4,8 +4,8 @@ import thoryvos_encoder as encoder
 import thoryvos_crypto as crypto
 import thoryvos_stego as stego
 import thoryvos_transfer as transfer
-from thoryvos_errors import *
 from Crypto.Util.Padding import pad, unpad
+
 
 # Importing Dependencies
 from os.path import exists, splitext
@@ -39,12 +39,13 @@ def encryptor(infile: str, outfile: str, password: str, mode: str) -> int:
     elif mode.upper() == 'SALSA20':
         encrypted_data = enc.Salsa20(password)
     else:
-        raise InvalidEncryptionMode
+        return 2
 
     if not encrypted_data:
-        raise EmptyDataFile
+        return 3
 
     encoder.write_data(get_extension(infile) + encrypted_data, outfile)
+    return 0
 
 
 def decryptor(infile: str, outfile: str, password: str, mode: str) -> int:
@@ -59,15 +60,16 @@ def decryptor(infile: str, outfile: str, password: str, mode: str) -> int:
     elif mode.upper() == 'SALSA20':
         decrypted_data = dec.Salsa20(password)
     else:
-        raise InvalidEncryptionMode
+        return 2
 
     if not decrypted_data:
         cleanup(outfile)
-        raise EmptyDataFile
+        return 3
 
     if not outfile.endswith(dec.extension):
         outfile += dec.extension
-    encoder.write_data(decrypted_data[16:], outfile)
+    encoder.write_data(decrypted_data, outfile)
+    return 0
 
 
 def anon_upload(infile: str):
@@ -75,7 +77,7 @@ def anon_upload(infile: str):
     if exists(infile):
         URL = transfer.upload(infile)
         return URL
-    raise URLError
+    return 5
 
 
 def anon_download(url: str):
@@ -83,7 +85,7 @@ def anon_download(url: str):
     if transfer.verify(url):
         location = transfer.download(url)
         return location
-    raise FileDoesNotExist
+    return 6
 
 
 def verify(url: str) -> bool:
@@ -96,10 +98,10 @@ def verify(url: str) -> bool:
 def hide_data(infile: str, outfile: str, datafile: str, lsb=None):
     """Steganography Hiding Driver for throyvos backend."""
     if not infile.endswith('.wav'):
-        raise NotAWAVFile
+        return 4
 
     if not outfile.endswith('.wav'):
-        raise NotAWAVFile
+        return 4
 
     try:
         lsb = int(lsb)
@@ -111,7 +113,7 @@ def hide_data(infile: str, outfile: str, datafile: str, lsb=None):
 
     if not datasize:
         cleanup(outfile)
-        raise EmptyDataFile
+        return 3
 
     return (lsb, datasize)
 
@@ -119,12 +121,12 @@ def hide_data(infile: str, outfile: str, datafile: str, lsb=None):
 def recover_data(infile: str, outfile: str, lsb: int, nbytes: int):
     """Steganography Retrieval Driver for throyvos backend."""
     if not lsb:
-        raise LSBError
+        return 7
     if not nbytes:
-        raise NBytesError
+        return 8
 
     if not infile.endswith('.wav'):
-        raise NotAWAVFile
+        return 4
 
     try:
         lsb = int(lsb)
@@ -133,10 +135,10 @@ def recover_data(infile: str, outfile: str, lsb: int, nbytes: int):
 
     steganographer = stego.Stego(infile, lsb)
     if steganographer.recover(outfile, nbytes):
-        return
+        return 0
 
     cleanup(outfile)
-    raise UnexpectedError("Error... CleanUp...OK")
+    return 1
 
 
 if __name__ == '__main__':

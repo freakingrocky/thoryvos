@@ -5,7 +5,6 @@ from Crypto import Random
 from Crypto.Protocol.KDF import scrypt
 from hashlib import sha512
 from Crypto.Util.Padding import pad, unpad
-import PyWave as PW
 
 
 def get_key(password: str, length: int):
@@ -57,8 +56,9 @@ class Decrypt:
 
     def __init__(self, infile: str) -> None:
         """Open the data in the infile and sets the IV."""
-        data = PW.open(infile, 'r').read()
-        self.data = data
+        data = open(infile, 'rb').read()
+        self.data = data[16:]
+        self.extension = unpad(data[:16], 16).decode()
 
     def AES(self, password: str) -> bytes:
         """Decrypt data according to AES algorithm."""

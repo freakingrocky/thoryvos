@@ -18,7 +18,7 @@ from UI_Functions import *
 from StyleSheets import *
 
 # Importing thoryvos backend
-import thoryvos_driver as thoryvos
+import thoryvos_driver_gui as thoryvos
 from thoryvos_errorcodes import *
 
 # Definign Global Variables
@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         self.ui.ToggleMenu.clicked.connect(
             lambda: UIFunctions.toggleMenu(self, 180, True))
         QtCore.QTimer.singleShot(1500, lambda: self.ui.AppDesc.setText(
-            "The all in one audio cryptographic toolkit"))
+            "The all in one cryptographic toolkit"))
 
         # Left Menu Configuration
         self.ui.Home.clicked.connect(
@@ -361,7 +361,7 @@ class MainWindow(QMainWindow):
             font.setItalic(True)
             font.setWeight(75)
             self.ui.SaveLocBrowseStegoLabel.setFont(font)
-            self.ui.SaveLocBrowseStegoLabel.setText("Save To:\n" +
+            self.ui.SaveLocBrowseStegoLabel.setText("Save To: \n" +
                                                     os.path.basename(file))
             self.ui.SaveLocBrowseStegoLabel.setStyleSheet(DragDropLabelSS2)
             self.ui.HideBtn.setEnabled(True)
@@ -392,9 +392,9 @@ class MainWindow(QMainWindow):
             font.setWeight(75)
             self.ui.OutfileRecLabel.setFont(font)
             self.ui.SaveLocationBrowseLabel.setFont(font)
-            self.ui.OutfileRecLabel.setText("Save To:\n" +
+            self.ui.OutfileRecLabel.setText("Save To: \n" +
                                             os.path.basename(file))
-            self.ui.SaveLocationBrowseLabel.setText("Save To:\n" +
+            self.ui.SaveLocationBrowseLabel.setText("Save To: \n" +
                                                     os.path.basename(file))
             self.ui.OutfileRecLabel.setStyleSheet(DragDropLabelSS2)
             self.ui.SaveLocationBrowseLabel.setStyleSheet(DragDropLabelSS2)
@@ -648,9 +648,6 @@ class MainWindow(QMainWindow):
         global Infile, Outfile
         self.ui.CryptoDragDropLabel.setText("Encrypting...")
 
-        if not Outfile.endswith('.wav'):
-            Outfile += '.wav'
-
         code = thoryvos.encryptor(Infile, Outfile, self.ui.Password.text(),
                                   self.ui.AlgoSelect.currentText())
         if code in ERRORCODES:
@@ -739,7 +736,7 @@ class MainWindow(QMainWindow):
             font.setItalic(True)
             font.setWeight(75)
             self.ui.CryptoSaveLocBrowseL.setFont(font)
-            self.ui.CryptoSaveLocBrowseL.setText("Save To:" +
+            self.ui.CryptoSaveLocBrowseL.setText("Save To: " +
                                                   os.path.basename(file))
             self.ui.CryptoSaveLocBrowseL.setStyleSheet(DragDropLabelSS2)
 

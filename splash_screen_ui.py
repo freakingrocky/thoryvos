@@ -132,7 +132,7 @@ class Ui_SplashScreen(object):
         _translate = QtCore.QCoreApplication.translate
         SplashScreen.setWindowTitle(_translate("SplashScreen", "MainWindow"))
         self.AppName.setText(_translate("SplashScreen", "Thor<strong>𝜓vos</strong>"))
-        self.AppDesc.setText(_translate("SplashScreen", "The all in one audio cryptographic toolkit"))
+        self.AppDesc.setText(_translate("SplashScreen", "The all in one cryptographic toolkit"))
         self.LoadingStatus.setText(_translate("SplashScreen", "Loading..."))
         self.CreatedBy.setText(_translate("SplashScreen", "Made By: Rakshan Sharma"))
         self.Version.setText(_translate("SplashScreen", "V1.0"))

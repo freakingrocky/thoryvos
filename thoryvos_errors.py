@@ -10,7 +10,7 @@ class InvalidEncryptionMode(Exception):
     """The encryption mode entered is invalid."""
     
     def __init__(self, mode):
-        self.ErrorMsg = f"Unsupported Encryption Mode: {mode}"
+        self.ErrorMsg = f"Unsupported Encryption/Decryption Mode: {mode}"
         AvailableModes = "AES, DES, Salsa20"
         super().__init__(self.ErrorMsg + "\n Currently Supported Modes are: (Case Insensitive): \n  " + AvailableModes)
 
