@@ -1,9 +1,9 @@
 """Command Line Interface for thoryvos."""
 from termcolor import cprint
 from os import get_terminal_size
-import thoryvos_driver as thoryvos
+from .thoryvos_driver import encryptor, decryptor, hide_data, recover_data, anon_upload, anon_download
 import argparse
-from thoryvos_errors import *
+from .thoryvos_errors import *
 
 
 def credits():
@@ -77,7 +77,7 @@ def parse_cl():
         if not args.outfile:
             exit("Output file is required.")
 
-        thoryvos.encryptor(args.infile, args.outfile, args.password,
+        encryptor(args.infile, args.outfile, args.password,
                            args.algorithm.upper())
 
         exit("Successfully Ecrypted.")
@@ -92,7 +92,7 @@ def parse_cl():
         if not args.outfile:
             exit("Output file is required.")
 
-        thoryvos.decryptor(args.infile, args.outfile, args.password,
+        decryptor(args.infile, args.outfile, args.password,
                            args.algorithm.upper())
 
         exit("Successfully Decrypted.")
@@ -107,7 +107,7 @@ def parse_cl():
         if not args.outfile:
             exit("Output file is required.")
 
-        thoryvos.hide_data(args.infile, args.outfile,
+        hide_data(args.infile, args.outfile,
                            args.datafile, args.lsb)
 
         cprint(
@@ -127,7 +127,7 @@ def parse_cl():
         if not args.outfile:
             exit("Output file is required.")
 
-        thoryvos.recover_data(args.infile, args.outfile, args.lsb,
+        recover_data(args.infile, args.outfile, args.lsb,
                               args.nbytes)
 
         exit(0)
@@ -136,7 +136,7 @@ def parse_cl():
         if not args.infile:
             raise FileDoesNotExist
 
-        URL = thoryvos.anon_upload(args.infile)
+        URL = anon_upload(args.infile)
 
         exit(f"URL: {URL}")
 
@@ -144,7 +144,7 @@ def parse_cl():
         if not args.url:
             raise URLError
 
-        filename = thoryvos.anon_download(args.url)
+        filename = anon_download(args.url)
 
         exit(f"Saved to {filename}")
 

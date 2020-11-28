@@ -1,17 +1,20 @@
-from UI_Functions import *
-from thoryvos import *
-from thoryvos_cli import parse_cl
+from .UI_Functions import *
+from .thoryvos import *
+from .thoryvos_cli import parse_cl
 import sys
 
 
-def main():
+def gui():
     app = QApplication(sys.argv)
     window = SplashScreen()
     sys.exit(app.exec_())
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) == 1:
-        main()
+        gui()
     else:
         parse_cl()
+
+if __name__ == "__main__":
+    main()

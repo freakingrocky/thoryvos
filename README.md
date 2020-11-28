@@ -17,30 +17,22 @@ You can use thor𝜓vos as a module, from the command line or through a GUI.
 &nbsp;&nbsp;&nbsp;Macros (GUI Only)
 
 To use the GUI, simply execute the following command:\
-&nbsp;&nbsp;&nbsp;```python -m thoryvos```
-[![Demo Video](https://i.imgur.com/BynAEz0.png)](https://www.youtube.com/watch?v=uIFjztawVHM&feature=youtu.be)
+&nbsp;&nbsp;&nbsp;```thoryvos```
+
+[![Demo Video](https://i.imgur.com/hgJ50EK.png)](https://www.youtube.com/watch?v=uIFjztawVHM&feature=youtu.be)
 
 To use the Command Line Interface, simply execute the following
-&nbsp;&nbsp;&nbsp;```python -m thoryvos [options]```
+&nbsp;&nbsp;&nbsp;```thoryvos [options]```
 
-![](https://i.imgur.com/8TsifwV.png)
+![Command Line Usage Demo](https://i.imgur.com/jhptGz2.png)
 
-To use as a module, import the driver code.\
-&nbsp;&nbsp;&nbsp;```import thoryvos_driver as thoryvos```
-
-The error codes and their meanings are in a seperate file called "thoryvos_errorcodes.py"
-
-To interpret the error codes in your program:
-```
-from thoryvos_errorcodes import Error
-
-raise Exception(Error[code])
-```
+To use as a module, simply import thoryvos.\
+&nbsp;&nbsp;&nbsp;```import thoryvos```
 
 # Documentation for the module
-### Start by importing the main module and the errors.
+### Start by importing the module.
 ```
-import thoryvos_driver as thoryvos
+import thoryvos
 ```
 
 ### For encryption/decryption:
@@ -64,7 +56,7 @@ On succesful download, returns the url of the uploaded file.
 
 ### For steganography:
 ```
-steg = thoryvos.hide_data(infile, outfile, datafile, lsb=None)
+lsb, nbytes = thoryvos.hide_data(infile, outfile, datafile, lsb=None)
 thoryvos.recover_data(infile, outfile, lsb=None, nbytes=None)
 ```
 infile -> Path to the input file (file to be hidden in)\

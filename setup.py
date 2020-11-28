@@ -9,8 +9,8 @@ def readme():
 
 setup(
   name='thoryvos',
-  packages=find_packages(include=['thoryvos', 'thoryvos.utils']),
-  version='0.8',
+  packages=find_packages(include=['thoryvos']),
+  version='1.0.2',
   license='MIT',
   description='The All-In One Cryptographic Toolkit',
   long_description=readme(),
@@ -18,7 +18,7 @@ setup(
   author='Rakshan Sharma',
   author_email='rakshan793@gmail.com',
   url='https://github.com/freakingrocky/thoryvos',
-  download_url='https://github.com/freakingrocky/thoryvos/build/dist/thoryvos-08.tar.gz',
+  download_url='https://github.com/freakingrocky/thoryvos/build/dist/thoryvos-1.0.2.tar.gz',
   include_package_data=True,
   keywords=['Cryptography', 'Crypto', 'Audio Cryptography',
               'Stagongraphy', 'Steganographer', 'Audio Steganography',
@@ -44,9 +44,6 @@ setup(
     'Topic :: Security',
     'Topic :: Security :: Cryptography',
     'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
@@ -54,6 +51,7 @@ setup(
   entry_points={
       "console_scripts": [
           "thoryvos=thoryvos.__main__:main",
+          "thoryvos_cli=thoryvos.__main__:parse_cl"
       ]
   },
 )

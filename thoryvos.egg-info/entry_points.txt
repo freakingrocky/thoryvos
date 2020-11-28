@@ -1,0 +1,4 @@
+[console_scripts]
+thoryvos = thoryvos.__main__:main
+thoryvos_cli = thoryvos.__main__:parse_cl
+

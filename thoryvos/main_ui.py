@@ -9,16 +9,37 @@
 
 
 from PySide2 import QtCore, QtGui, QtWidgets
-from GUI_helper import DragDropWidget
-import fonts
+from .GUI_helper import DragDropWidget
+from .fonts import *
 import os
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.fontDB = QtGui.QFontDatabase()
-        for font in os.listdir("fonts"):
-            self.fontDB.addApplicationFont(f":/fonts/fonts/{font}")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/CabinSketch-Bold.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/CabinSketch-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/CFNightofTerrorPERSONAL-Reg.ttf")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/Courgette-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/DEADLY KILLERS.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/FEASFBI_.ttf")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/FEASFBI.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/FEASFBRG.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/Lemon-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/Martyric_PersonalUse.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/monbaiti.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/PirataOne-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            ":/fonts/fonts/RW-creepsville.ttf")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1080, 400)
         MainWindow.setMinimumSize(QtCore.QSize(1080, 400))

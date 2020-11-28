@@ -1,4 +1,4 @@
-from thoryvos import *
+from .thoryvos import *
 
 
 class UIFunctions(MainWindow):

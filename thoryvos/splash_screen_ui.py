@@ -9,7 +9,7 @@
 
 
 from PySide2 import QtCore, QtGui, QtWidgets
-import fonts
+from .fonts import *
 import os
 
 
@@ -27,8 +27,29 @@ class Ui_SplashScreen(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.DropShadowFrame = QtWidgets.QFrame(self.centralwidget)
         self.fontDB = QtGui.QFontDatabase()
-        for font in os.listdir("fonts"):
-                self.fontDB.addApplicationFont(f":/fonts/fonts/{font}")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/CabinSketch-Bold.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/CabinSketch-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/CFNightofTerrorPERSONAL-Reg.ttf")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/Courgette-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/DEADLY KILLERS.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/FEASFBI_.ttf")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/FEASFBI.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/FEASFBRG.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/Lemon-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/Martyric_PersonalUse.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/monbaiti.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/PirataOne-Regular.ttf")
+        self.fontDB.addApplicationFont(
+                ":/fonts/fonts/RW-creepsville.ttf")
         font = QtGui.QFont()
         font.setFamily("MS PGothic")
         font.setPointSize(15)

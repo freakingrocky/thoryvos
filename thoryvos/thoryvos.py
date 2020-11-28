@@ -6,20 +6,20 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 import os
-import fonts
+from .fonts import *
 from time import sleep
 
 # GUI
-from main_ui import Ui_MainWindow
-from splash_screen_ui import Ui_SplashScreen
+from .main_ui import Ui_MainWindow
+from .splash_screen_ui import Ui_SplashScreen
 
 # Import UI Functions
-from UI_Functions import *
-from StyleSheets import *
+from .UI_Functions import *
+from .StyleSheets import *
 
 # Importing thoryvos backend
-import thoryvos_driver_gui as thoryvos
-from thoryvos_errorcodes import *
+from .thoryvos_driver_gui import recover_data, decryptor, encryptor, hide_data, anon_download, anon_upload, verify
+from .thoryvos_errorcodes import *
 
 # Definign Global Variables
 Progress = 0
@@ -41,8 +41,29 @@ class MainWindow(QMainWindow):
         self.ui.AppDesc.setText("Welcome...")
 
         self.fontDB = QFontDatabase()
-        for font in os.listdir("fonts"):
-            self.fontDB.addApplicationFont(f":/fonts/fonts/{font}")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/CabinSketch-Bold.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/CabinSketch-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/CFNightofTerrorPERSONAL-Reg.ttf")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/Courgette-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/DEADLY KILLERS.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/FEASFBI_.ttf")
+        self.fontDB.addApplicationFont(f":/fonts/fonts/FEASFBI.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/FEASFBRG.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/Lemon-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/Martyric_PersonalUse.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/monbaiti.ttf")
+        self.fontDB.addApplicationFont(
+            f":/fonts/fonts/PirataOne-Regular.ttf")
+        self.fontDB.addApplicationFont(
+            ":/fonts/fonts/RW-creepsville.ttf")
 
         self.lsb = None
         self.nb = None
@@ -177,7 +198,7 @@ class MainWindow(QMainWindow):
         if not start:
             return
 
-        steg = thoryvos.recover_data(Infile, "thoryvos_temp2217761.wav", self.lsb, int(self.nb))
+        steg = recover_data(Infile, "thoryvos_temp2217761.wav", self.lsb, int(self.nb))
         if steg in ERRORCODES:
             self.reset()
             self.ui.MInfileLabel.setStyleSheet("")
@@ -185,7 +206,7 @@ class MainWindow(QMainWindow):
             os.remove("thoryvos_temp2217761.wav")
             return
 
-        dec = thoryvos.decryptor("thoryvos_temp2217761.wav", Outfile, password, "AES")
+        dec = decryptor("thoryvos_temp2217761.wav", Outfile, password, "AES")
         if dec in ERRORCODES:
             self.reset()
             self.ui.MInfileLabel.setStyleSheet("")
@@ -209,7 +230,7 @@ class MainWindow(QMainWindow):
         if not start:
             return
 
-        enc = thoryvos.encryptor(Datafile, "thoryvos_temp2217761.wav", password, "AES")
+        enc = encryptor(Datafile, "thoryvos_temp2217761.wav", password, "AES")
         if enc in ERRORCODES:
             self.reset()
             self.ui.MInfileLabel.setStyleSheet("")
@@ -217,7 +238,7 @@ class MainWindow(QMainWindow):
             os.remove("thoryvos_temp2217761.wav")
             return
 
-        steg = thoryvos.hide_data(
+        steg = hide_data(
             Infile, Outfile, "thoryvos_temp2217761.wav", self.lsb)
         if steg in ERRORCODES:
             self.reset()
@@ -235,7 +256,7 @@ class MainWindow(QMainWindow):
         """Recover Driver Code."""
         global Infile, Outfile
 
-        code = thoryvos.recover_data(Infile, Outfile, self.lsb, int(self.nb))
+        code = recover_data(Infile, Outfile, self.lsb, int(self.nb))
         self.reset()
         if code in ERRORCODES:
             self.ui.InfileRecLabel.setText(f"{Error[code]}")
@@ -312,9 +333,8 @@ class MainWindow(QMainWindow):
 
         self.ui.InfileDragDropLabel.setText("Hiding...")
 
-
         lsb = self.lsb if self.lsb in range(1, 8) else None
-        steg = thoryvos.hide_data(Infile, Outfile, Datafile, lsb)
+        steg = hide_data(Infile, Outfile, Datafile, lsb)
         if steg in ERRORCODES:
             self.ui.InfileDragDropLabel.setText(Error[code])
             return
@@ -519,7 +539,7 @@ class MainWindow(QMainWindow):
         if URL:
             self.ui.DragDropLabelTransfer.setText("Downloading...")
 
-            location = thoryvos.anon_download(URL)
+            location = anon_download(URL)
             self.ui.DragDropLabelTransfer.setStyleSheet(
                     DragDropLabelTransferSS2)
             if type(location) == int:
@@ -533,7 +553,7 @@ class MainWindow(QMainWindow):
         else:
             self.ui.DragDropLabelTransfer.setText("Uploading...")
 
-            filename = thoryvos.anon_upload(Infile)
+            filename = anon_upload(Infile)
             if type(filename) == int:
                 self.reset()
                 self.ui.DragDropLabelTransfer.setText(
@@ -594,7 +614,7 @@ class MainWindow(QMainWindow):
             return
 
         text = self.ui.Url.text()
-        if thoryvos.verify(text):
+        if verify(text):
             Size = 12
             self.ui.DragDropLabelTransfer.setStyleSheet(
                 DragDropLabelTransferSS2)
@@ -636,7 +656,7 @@ class MainWindow(QMainWindow):
         global Infile, Outfile
         self.ui.CryptoDragDropLabel.setText("Decrypting...")
 
-        code = thoryvos.decryptor(Infile, Outfile, self.ui.Password.text(),
+        code = decryptor(Infile, Outfile, self.ui.Password.text(),
                                   self.ui.AlgoSelect.currentText())
         if code in ERRORCODES:
             self.ui.CryptoDragDropLabel.setText(Error[code])
@@ -648,7 +668,7 @@ class MainWindow(QMainWindow):
         global Infile, Outfile
         self.ui.CryptoDragDropLabel.setText("Encrypting...")
 
-        code = thoryvos.encryptor(Infile, Outfile, self.ui.Password.text(),
+        code = encryptor(Infile, Outfile, self.ui.Password.text(),
                                   self.ui.AlgoSelect.currentText())
         if code in ERRORCODES:
             self.ui.CryptoDragDropLabel.setText(Error[code])

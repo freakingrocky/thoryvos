@@ -1,11 +1,11 @@
 """throyvos Driver Code."""
 # Importing backend libraries
-import thoryvos_encoder as encoder
-import thoryvos_crypto as crypto
-import thoryvos_stego as stego
-import thoryvos_transfer as transfer
-from thoryvos_errors import *
-from Crypto.Util.Padding import pad, unpad
+from .thoryvos_encoder import write_data
+from .thoryvos_crypto import Encrypt, Decrypt
+from .thoryvos_stego import Stego
+from .thoryvos_transfer import upload, download, verify
+from .thoryvos_errors import *
+from Crypto.Util.Padding import pad
 
 # Importing Dependencies
 from os.path import exists, splitext
@@ -30,7 +30,7 @@ def get_extension(filename):
 
 def encryptor(infile: str, outfile: str, password: str, mode: str) -> int:
     """Encryption Driver for thoryvos backend."""
-    enc = crypto.Encrypt(infile)
+    enc = Encrypt(infile)
 
     if mode.upper() == 'AES':
         encrypted_data = enc.AES(password)
@@ -44,13 +44,13 @@ def encryptor(infile: str, outfile: str, password: str, mode: str) -> int:
     if not encrypted_data:
         raise EmptyDataFile
 
-    encoder.write_data(get_extension(infile) + encrypted_data, outfile)
+    write_data(get_extension(infile) + encrypted_data, outfile)
 
 
 def decryptor(infile: str, outfile: str, password: str, mode: str) -> int:
     """Decryption Driver for thoryvos backend."""
 
-    dec = crypto.Decrypt(infile)
+    dec = Decrypt(infile)
 
     if mode.upper() == 'AES':
         decrypted_data = dec.AES(password)
@@ -67,30 +67,23 @@ def decryptor(infile: str, outfile: str, password: str, mode: str) -> int:
 
     if not outfile.endswith(dec.extension):
         outfile += dec.extension
-    encoder.write_data(decrypted_data[16:], outfile)
+    write_data(decrypted_data[16:], outfile)
 
 
 def anon_upload(infile: str):
     """File Transfer Driver for throyvos backend."""
     if exists(infile):
-        URL = transfer.upload(infile)
+        URL = upload(infile)
         return URL
     raise URLError
 
 
 def anon_download(url: str):
     """File Transfer Driver for throyvos backend."""
-    if transfer.verify(url):
-        location = transfer.download(url)
+    if verify(url):
+        location = download(url)
         return location
     raise FileDoesNotExist
-
-
-def verify(url: str) -> bool:
-    """Check if url is valid."""
-    if transfer.verify(url):
-        return True
-    return False
 
 
 def hide_data(infile: str, outfile: str, datafile: str, lsb=None):
@@ -106,7 +99,7 @@ def hide_data(infile: str, outfile: str, datafile: str, lsb=None):
     except TypeError:
         lsb = None
 
-    steganographer = stego.Stego(infile, lsb)
+    steganographer = Stego(infile, lsb)
     lsb, datasize = steganographer.hide(datafile, outfile)
 
     if not datasize:
@@ -131,7 +124,7 @@ def recover_data(infile: str, outfile: str, lsb: int, nbytes: int):
     except TypeError:
         lsb = lsb
 
-    steganographer = stego.Stego(infile, lsb)
+    steganographer = Stego(infile, lsb)
     if steganographer.recover(outfile, nbytes):
         return
 
