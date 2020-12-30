@@ -1,6 +1,6 @@
 # ***thor𝜓vos***
 ***The all in one cryptographic toolkit.***\
-<a href="https://www.youtube.com/watch?v=dUS6hlTvuzA" target="_blank"><img src="https://i.imgur.com/NvivAey.gif" width=2500 />< /a>
+[<img src="https://i.imgur.com/NvivAey.gif" width=2500 />](https://www.youtube.com/watch?v=dUS6hlTvuzA)
 
 You can use thor𝜓vos as a module, from the command line or through a GUI.
 
