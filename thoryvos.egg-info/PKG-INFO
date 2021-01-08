@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: thoryvos
-Version: 1.0.2
+Version: 1.0.4
 Summary: The All-In One Cryptographic Toolkit
 Home-page: https://github.com/freakingrocky/thoryvos
 Author: Rakshan Sharma
@@ -8,12 +8,15 @@ Author-email: rakshan793@gmail.com
 License: MIT
 Download-URL: https://github.com/freakingrocky/thoryvos/build/dist/thoryvos-1.0.2.tar.gz
 Description: # ***thor𝜓vos***
-        The all in one cryptographic toolkit.
+        ***The all in one cryptographic toolkit.***
+        
+        [<img src="https://i.imgur.com/NvivAey.gif" width=2500 />](https://youtu.be/y7hUr5W8g2U)
+        *Click to watch demo video.*
         
         You can use thor𝜓vos as a module, from the command line or through a GUI.
         
         \
-        **Simply use pip to install by calling the following command**.\
+        **Simply use [pip](https://pypi.org/project/thoryvos/) to install by calling the following command**.\
         `pip install thoryvos`
         
         
@@ -28,7 +31,7 @@ Description: # ***thor𝜓vos***
         To use the GUI, simply execute the following command:\
         &nbsp;&nbsp;&nbsp;```thoryvos```
         
-        [![Demo Video](https://i.imgur.com/hgJ50EK.png)](https://www.youtube.com/watch?v=uIFjztawVHM&feature=youtu.be)
+        [![Demo Video](https://i.imgur.com/hgJ50EK.png)](https://youtu.be/y7hUr5W8g2U)
         
         To use the Command Line Interface, simply execute the following
         &nbsp;&nbsp;&nbsp;```thoryvos [options]```
@@ -73,8 +76,8 @@ Description: # ***thor𝜓vos***
         outfile -> Path to the output file (name of the output file)\
         On succesful hiding, returns a tuple containing lsb & nbytes values respectively. `(lsb, nbytes)`.
         
+        ### Username (Github, Instagram): freakingrocky
         ### Made by Rakshan Sharma
-        ### Instagram: freakingrocky
         
 Keywords: Cryptography,Crypto,Audio Cryptography,Stagongraphy,Steganographer,Audio Steganography,Cryptographic Toolkit,File Sharing,Anonymous File Sharing
 Platform: UNKNOWN

@@ -1,6 +1,7 @@
 # ***thor𝜓vos***
-***The all in one cryptographic toolkit.***\
-[<img src="https://i.imgur.com/NvivAey.gif" width=2500 />](https://www.youtube.com/watch?v=dUS6hlTvuzA)
+***The all in one cryptographic toolkit.***
+
+[<img src="https://i.imgur.com/NvivAey.gif" width=2500 />](https://youtu.be/y7hUr5W8g2U)
 *Click to watch demo video.*
 
 You can use thor𝜓vos as a module, from the command line or through a GUI.
@@ -21,7 +22,7 @@ You can use thor𝜓vos as a module, from the command line or through a GUI.
 To use the GUI, simply execute the following command:\
 &nbsp;&nbsp;&nbsp;```thoryvos```
 
-[![Demo Video](https://i.imgur.com/hgJ50EK.png)](https://www.youtube.com/watch?v=dUS6hlTvuzA)
+[![Demo Video](https://i.imgur.com/hgJ50EK.png)](https://youtu.be/y7hUr5W8g2U)
 
 To use the Command Line Interface, simply execute the following
 &nbsp;&nbsp;&nbsp;```thoryvos [options]```
@@ -66,5 +67,5 @@ datafile -> Path to the data file (data file to be hidden)\
 outfile -> Path to the output file (name of the output file)\
 On succesful hiding, returns a tuple containing lsb & nbytes values respectively. `(lsb, nbytes)`.
 
+### Username (Github, Instagram): freakingrocky
 ### Made by Rakshan Sharma
-### Instagram: freakingrocky

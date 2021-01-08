@@ -10,7 +10,7 @@ def readme():
 setup(
   name='thoryvos',
   packages=find_packages(include=['thoryvos']),
-  version='1.0.2',
+  version='1.0.4',
   license='MIT',
   description='The All-In One Cryptographic Toolkit',
   long_description=readme(),
