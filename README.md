@@ -1,7 +1,7 @@
 # ***thor𝜓vos***
 ***The all in one cryptographic toolkit.***
 
-[<img src="https://i.imgur.com/NvivAey.gif" width=2500 />](https://youtu.be/y7hUr5W8g2U)
+<a href="https://youtu.be/y7hUr5W8g2U" target="_blank" alt="Demo Video"><img src="https://i.imgur.com/NvivAey.gif" width=2500 alt="Demo Video" /></a>
 *Click to watch demo video.*
 
 You can use thor𝜓vos as a module, from the command line or through a GUI.
@@ -22,7 +22,7 @@ You can use thor𝜓vos as a module, from the command line or through a GUI.
 To use the GUI, simply execute the following command:\
 &nbsp;&nbsp;&nbsp;```thoryvos```
 
-[![Demo Video](https://i.imgur.com/hgJ50EK.png)](https://youtu.be/y7hUr5W8g2U)
+<a href="https://youtu.be/y7hUr5W8g2U" target="_blank" alt="Demo Video"><img src="https://i.imgur.com/hgJ50EK.png" alt="Demo Video" /></a>
 
 To use the Command Line Interface, simply execute the following
 &nbsp;&nbsp;&nbsp;```thoryvos [options]```
