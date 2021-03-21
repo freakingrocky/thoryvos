@@ -70,7 +70,7 @@ class MainWindow(QMainWindow):
 
         # Toggle Menu Bar
         self.ui.ToggleMenu.clicked.connect(
-            lambda: UIFunctions.toggleMenu(self, 180, True))
+            lambda: toggleMenu(self, 180, True))
         QtCore.QTimer.singleShot(1500, lambda: self.ui.AppDesc.setText(
             "The all in one cryptographic toolkit"))
 
