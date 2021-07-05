@@ -7,7 +7,7 @@
 You can use thor𝜓vos as a module, from the command line or through a GUI.
 
 \
-**Simply use [pip](https://pypi.org/project/thoryvos/) to install by calling the following command**.\
+**Simply use [pip](https://pypi.org/project/thoryvos/) to install by calling the following command. Run it as admin**.\
 `pip install thoryvos`
 
 
